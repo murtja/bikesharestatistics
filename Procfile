@@ -1,1 +1,1 @@
-web: gunicorn BikeShareStatistics.py --log-file -
+web: gunicorn BikeShareStatistics:app --log-file -
