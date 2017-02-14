@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<!-- Jumbotron -->
+<div class="jumbotron">
+    <h1>Find the best bike share locations.</h1>
+    <p class="lead">
+        We help you find the best bike share locations by showing them to you on a map and also giving
+        really cool statistics to help you pick the best locations.
+    </p>
+</div>
+
+<div id="map_section" class="panel panel-default">
+  <div class="panel-heading">Bike Share Locations Map</div>
+  <div class="panel-body" style="padding: 0px;">
+    <div id="map" style="width: 1138px; height: 500px;"></div>
+  </div>
+</div>
+
+<div id="stats_section" class="panel panel-default">
+  <div class="panel-heading">Bike Share Availability Chart</div>
+  <div class="panel-body" style="padding: 0px;">
+    <canvas id="myChart"></canvas>
+  </div>
+</div>
+<h1>{{name}}</h1>
+
+{% endblock %}
+
+{% block body_scripts %}
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbmjv7-D8NOxv4KOyMs4lXB7OC7ZtK6SM&callback=initMap">
+</script>
+
+<script>
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {{graph_data | safe}},
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+{% endblock %}}
