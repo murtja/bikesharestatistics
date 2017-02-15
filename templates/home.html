@@ -11,19 +11,37 @@
 </div>
 
 <div id="map_section" class="panel panel-default">
-  <div class="panel-heading">Bike Share Locations Map</div>
-  <div class="panel-body" style="padding: 0px;">
-    <div id="map" style="width: 1138px; height: 500px;"></div>
-  </div>
+    <div class="panel-heading">Bike Share Locations Map</div>
+    <div class="panel-body" style="padding: 0px;">
+        <div id="map" style="width: 100%; height: 500px;"></div>
+    </div>
 </div>
 
 <div id="stats_section" class="panel panel-default">
-  <div class="panel-heading">Bike Share Availability Chart</div>
-  <div class="panel-body" style="padding: 0px;">
-    <canvas id="myChart"></canvas>
-  </div>
+    <div class="panel-heading">Bike Share Availability Chart</div>
+    <div class="panel-body" style="padding: 0px;">
+        <canvas id="myChart"></canvas>
+    </div>
 </div>
-<h1>{{name}}</h1>
+<div id="rating_section_chart" class="panel panel-default">
+    <div class="panel-heading">Bike Share Rating Chart</div>
+    <div class="panel-body" style="padding: 0px;">
+        <canvas id="ratingChart"></canvas>
+    </div>
+</div>
+
+<div id="rating_section" class="panel panel-default">
+    <div class="panel-heading">Bike Share Availability Chart</div>
+    <div class="panel-body" style="padding: 0px;">
+        <div id="stationSelectDiv">
+
+        </div>
+        <div>
+            <input class="form-control" id="ratingValue" type="number" min="0" max="10" />
+        </div>
+        <button id="submitRatingButton" class="btn btn-success">Submit</button>
+    </div>
+</div>
 
 {% endblock %}
 
@@ -31,21 +49,5 @@
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbmjv7-D8NOxv4KOyMs4lXB7OC7ZtK6SM&callback=initMap">
 </script>
-
-<script>
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {{graph_data | safe}},
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
-});
-</script>
+<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
 {% endblock %}}
